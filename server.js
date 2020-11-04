@@ -8,14 +8,14 @@ const jwt = require('jsonwebtoken')
 
 const JWT_SECRET = 'sdjkfh8923yhjdksbfma@#*(&@*!^#&@bhjb2qiuhesdbhjdsfg839ujkdhfjk'
 
-mongoose.connect('mongodb://localhost:27017/login-app-db', {
+mongoose.connect('mongodb+srv://nipuN:MindScape12345@cluster0.5lnsm.mongodb.net/registration?retryWrites=true&w=majority', {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 	useCreateIndex: true
 })
 
 const app = express()
-app.use('/', express.static(path.join(__dirname, 'static')))
+app.use('/', express.static('static'))
 app.use(bodyParser.json())
 
 app.post('/api/change-password', async (req, res) => {
@@ -53,35 +53,38 @@ app.post('/api/change-password', async (req, res) => {
 })
 
 app.post('/api/login', async (req, res) => {
-	const { username, password } = req.body
-	const user = await User.findOne({ username }).lean()
+	const { email, password } = req.body
+	const user = await User.findOne({ email }).lean()
 
 	if (!user) {
-		return res.json({ status: 'error', error: 'Invalid username/password' })
+		return res.json({ status: 'error', error: 'Invalid email/password' })
 	}
 
 	if (await bcrypt.compare(password, user.password)) {
 		// the username, password combination is successful
 
 		const token = jwt.sign(
-			{
-				id: user._id,
-				username: user.username
-			},
-			JWT_SECRET
-		)
+      {
+        id: user._id,
+        username: user.username,
+      },
+      JWT_SECRET
+    );
 
-		return res.json({ status: 'ok', data: token })
+		return res.json({ status: 'ok', data:user.username})
 	}
 
-	res.json({ status: 'error', error: 'Invalid username/password' })
+	res.json({ status: 'error', error: 'Invalid email/password' })
 })
 
 app.post('/api/register', async (req, res) => {
-	const { username, password: plainTextPassword } = req.body
+	const { username, email, password: plainTextPassword } = req.body
 
 	if (!username || typeof username !== 'string') {
 		return res.json({ status: 'error', error: 'Invalid username' })
+	}
+	if (!email || typeof email !== 'string') {
+		return res.json({ status: 'error', error: 'Invalid email' })
 	}
 
 	if (!plainTextPassword || typeof plainTextPassword !== 'string') {
@@ -100,13 +103,14 @@ app.post('/api/register', async (req, res) => {
 	try {
 		const response = await User.create({
 			username,
-			password
+			password,
+			email
 		})
 		console.log('User created successfully: ', response)
 	} catch (error) {
 		if (error.code === 11000) {
 			// duplicate key
-			return res.json({ status: 'error', error: 'Username already in use' })
+			return res.json({ status: 'error', error: 'email already in use' })
 		}
 		throw error
 	}

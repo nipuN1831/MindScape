@@ -1,45 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
-	</head>
-	<body>
-		<h1>Registration</h1>
-		<form id="reg-form">
-			<input type="text" autocomplete="off" id="username" placeholder="Username" />
-			<input type="password" autocomplete="off" id="password" placeholder="Password" />
-			<input type="submit" value="Submit Form" />
-		</form>
+  <head>
+    <meta charset="utf-8" />
+    <!--for search engine optimization-->
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Mindscape</title>
+    <!--to be edited-->
+    <meta
+      name="our web page name"
+      content="Here is a precise description of my awesome webpage."
+    />
+    <!--to be edited-->
+    <meta name="robots" content="noindex" />
+    <!--end of search engine optimization tags-->
 
-		<script>
-			const form = document.getElementById('reg-form')
-			form.addEventListener('submit', registerUser)
-
-			async function registerUser(event) {
-				event.preventDefault()
-				const username = document.getElementById('username').value
-				const password = document.getElementById('password').value
-
-				const result = await fetch('/api/register', {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify({
-						username,
-						password
-					})
-				}).then((res) => res.json())
-
-				if (result.status === 'ok') {
-					// everythign went fine
-					alert('Success')
-				} else {
-					alert(result.error)
-				}
-			}
-		</script>
-	</body>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link href="style1.css" rel="stylesheet" />
+  </head>
 </html>
+
+<!--body begin-->
+<body data-spy="scroll" data-target="#navbarResponsive">
+  <!--Start Home Section-->
+  <div id="home">
+    <!--Navigation-->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <span class="logo">Mindscape</span>
+      <!--logo to be added-->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarResponsive"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#home">Home</a>
+            <li class="nav-item">
+                  <a class="nav-link" href="#about">About Us</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="new.html">Live experience</a>
+              </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Login</a>
+          </li> 
+    </div> 
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <!--End of Navigation-->
+  <!--Start Landing Page-->
+  <div class="landing">
+    <div class="home-wrap">
+      <div class="home-inner"></div>
+    </div>
+  </div>
+  <div class="caption text-center">
+    <h1>Mindscape</h1>
+    <h3>"Explore the Unexplored"</h3>
+    <a class="btn btn-outline-light btn-lg" href="new.html">Explore More</a>
+  </div>
+  <!--End Landing Page-->
+</div>
+<!--End of Home Section-->
+    <!--our aim-->
+    <!--Idea section begins-->
+<div class="offset" id="about">
+    <div class="jumbotron">
+        <div class="row text-center">
+            <div class="col-12">
+                <h3 class="heading">About Us</h3> <!--can be edited-->
+                <div class="underline"></div>
+                <p class="lead">  Public speaking is all about enabling your tongue to deliver the message of your heart.
+                  We are a group of inquisitive individuals with an unremunerative goal of catalyzing the growth of peoples’ 
+                  life and career by projecting a unique learning journey towards building Charismatic, inspiring individuals 
+                  with an ability to create instant rapport with their audience in the field of Public Speaking. We are believers of,
+                </p>
+                  <span id="pass"><b>"If you can Speak,you can Influence,and if you can Influence, you can change lives."</b></span>
+                  <br>
+                  <br>
+                 <p class="lead">We plan to conduct weekly sessions, mentoring students with individual attention, and helping you 
+                   develop your on-stage persona with the help of multi-faceted activities like group discussions, opinionated
+                    talks, debates, oratorical sessions, etc..</p>
+                  <p class="lead">Come Join us in this exciting journey. We are Open to applications from both mentors as well as learners.
+                    </p>
+            </div>
+            <!--dummy text-->
+        </div> 
+    </div>
+    </div>
+    <!--end of Idea section-->
+</div>
+<!--end of about us-->
+
+
+<!--join us starts-->
+
+<!--join us ends-->
+
+<!--Start Contact Section-->
+<div id="contact" class="offset">
+    <footer>
+      <div class="row justify-content-center">
+        <div class="col-md-5 text-center">
+          <img src="logo.png" alt="logo">
+          <p>
+            Have any queries, suggestions, or feedback? Email us at mindscape.info@gmail.com
+Sit back and relax. We will revert back as soon as possible.
+
+          </p>
+          <strong>Contact Info:</strong>
+          <p>mindscape.info@gmail.com</p>
+          <a href="" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href=""target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <hr class="socket" />
+        &copy; Mindscape.
+      </div>
+    </footer>
+  </div>
+  <!--End of Contact Section-->
+</body>
+<!--body end-->

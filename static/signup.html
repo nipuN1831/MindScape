@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!--for search engine optimization-->
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Mindscape</title>
+    <!--to be edited-->
+    <meta
+      name="our web page name"
+      content="Here is a precise description of my awesome webpage."
+    />
+    <!--to be edited-->
+    <meta name="robots" content="noindex" />
+    <!--end of search engine optimization tags-->
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link href="signup.css" rel="stylesheet" />
+  </head>
+</html>
+<body data-spy="scroll" data-target="#navbarResponsive">
+    <!--Start Home Section-->
+    <div id="home">
+      <!--Navigation-->
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+        <span class="logo" style="color: white;">Mindscape</span>
+        <!--logo to be added-->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarResponsive"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+              </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="new.html">Live experience</a>
+                </>
+            <li class="nav-item">
+              <a class="nav-link" href="login.html">Login</a>
+            </li>
+      </div> 
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <!--End of Navigation-->
+
+    <!--signup-->
+    <div id="login-box">
+      <div class="left">
+        <h1>Sign up</h1>
+        <form id = "reg-form">
+        
+        <input type="text" name="username" id="username" placeholder="Username" />
+        <input type="text" name="email" id="email" placeholder="E-mail" />
+        <input type="password" name="password" id="password" placeholder="Password" />
+        <input type="password" name="password2" id="password2" placeholder="Retype password" />
+        
+        <input type="submit" name="signup_submit" value="Sign me up" />
+      </form>
+      <script>
+        const form = document.getElementById('reg-form')
+        form.addEventListener('submit', registerUser)
+  
+        async function registerUser(event) {
+          event.preventDefault()
+          const username = document.getElementById('username').value
+          const email = document.getElementById('email').value
+          const password = document.getElementById('password').value
+          const password2 = document.getElementById('password2').value
+          if(password === password2)
+          {const result = await fetch('/api/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              username,
+              password,
+              email
+            })
+          }).then((res) => res.json())
+          console.log(result)
+        if(result.status === "ok")
+        {
+          window.location.href = "/new.html"
+        }
+        }
+          else 
+          {
+            alert("Password does not match")
+          }
+  
+          
+        }
+      </script>
+      </div>
+      <div class = "right">
+      </div>
+    </div>
+    <!--signup ends-->
+     <!--footer-->
+     <div id="contact" class="offset">
+        <footer>
+          <div class="row justify-content-center">
+            <div class="col-md-5 text-center">
+              <img src="logo.png" alt="logo">
+              <p>
+                Have any queries, suggestions, or feedback? Email us at mindscape.info@gmail.com
+    Sit back and relax. We will revert back as soon as possible.
+    
+              </p>
+              <strong>Contact Info:</strong>
+              <p>mindscape.info@gmail.com</p>
+              <a href="" target="_blank"><i class="fab fa-instagram"></i></a>
+              <a href=""target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <hr class="socket" />
+            &copy; Mindscape.
+          </div>
+        </footer>
+      </div>
+      <!--End of Contact Section-->
+    </body>
+      <!--footer ends-->
