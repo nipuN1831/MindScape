@@ -119,5 +119,5 @@ app.post('/api/register', async (req, res) => {
 })
 
 app.listen(process.env.PORT || 9999, () => {
-	console.log('Server up at 9999')
-})
+  console.log('Server up at 9999');
+});
